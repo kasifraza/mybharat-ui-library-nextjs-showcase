@@ -1,6 +1,21 @@
-# My Bharat Volunteer Portal
+<p align="center">
+  <a href="https://github.com/kasifraza/mybharat-ui-library-nextjs-showcase">
+    <img src="https://cdn-prod.mybharats.in/mybharat/assets/img/yuva_landing/YASLogo_opt_2x.png" alt="Ministry of Youth Affairs & Sports — Government of India" height="64" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="https://cdn-prod.mybharats.in/mybharat/assets/img/yuva_landing/mybharatlogo_opt_2x.png" alt="My Bharat" height="48" />
+  </a>
+</p>
 
-A civic-tech volunteer engagement portal for **Mera Yuva Mera Bharat** — built to showcase a complete, production-style web app using the **Next.js App Router**, **Tailwind CSS**, and **[mybharat-react-library](https://www.npmjs.com/package/mybharat-react-library)** as the only UI component library.
+<h1 align="center">My Bharat Volunteer Portal</h1>
+
+<p align="center">
+  <strong>A Next.js App Router showcase built entirely with the My Bharat design system</strong><br/>
+  Next.js 16 · React 19 · Tailwind CSS 4 · <a href="https://www.npmjs.com/package/mybharat-react-library">mybharat-react-library</a>
+</p>
+
+---
+
+A civic-tech volunteer engagement portal for **Mera Yuva Mera Bharat** — a complete, production-style web app using the **Next.js App Router**, **Tailwind CSS**, and **[mybharat-react-library](https://www.npmjs.com/package/mybharat-react-library)** as the only UI component library.
 
 All 20 components from the My Bharat design system are used across 5 pages, in both light and dark themes.
 
