@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# netlify static export & local logs
+/dev.log
+/serve.log
+/serve.log.*
+/server.log

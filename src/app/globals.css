@@ -1,26 +1,174 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-hanken);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* App chrome is mapped 1:1 onto mybharat-react-library design tokens, so the
+   library's own [data-theme="dark"] block re-themes the whole app for free.
+   Base primary = --myb-secondary-600 (#425dda); My Bharat saffron (#ff4f02)
+   is the accent. */
+:root {
+  --page-bg: var(--myb-neutral-100);
+  --surface: var(--myb-neutral-00);
+  --surface-muted: var(--myb-neutral-100);
+  --text-strong: var(--myb-neutral-900);
+  --text-muted: var(--myb-neutral-600);
+  --border-soft: var(--myb-neutral-200);
+
+  --brand: var(--myb-secondary-600);
+  --brand-strong: var(--myb-secondary-700);
+  --brand-soft: var(--myb-secondary-100);
+  --accent: var(--myb-primary-600);
+  --accent-soft: var(--myb-primary-100);
+  --success: var(--myb-success-600);
+  --success-soft: var(--myb-success-100);
+  --success-strong: var(--myb-success-700);
+  --error: var(--myb-error-500);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--page-bg);
+  color: var(--text-strong);
+  font-family: var(--font-hanken), "Segoe UI", system-ui, sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  accent-color: var(--brand);
+}
+
+/* --- Browser surfaces, themed to the palette --- */
+
+::selection {
+  background: color-mix(in srgb, var(--brand) 24%, transparent);
+  color: var(--text-strong);
+}
+
+a {
+  text-underline-offset: 3px;
+  text-decoration-thickness: from-font;
+}
+
+a:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-soft) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-soft);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+  background-clip: content-box;
+}
+
+/* --- Shared vocabulary --- */
+
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+}
+
+.surface-muted {
+  background: var(--surface-muted);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.brand-text {
+  color: var(--brand);
+}
+
+.brand-bg-soft {
+  background: var(--brand-soft);
+}
+
+.glass-bar {
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+}
+
+.card-hover {
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 24px -8px color-mix(in srgb, var(--brand) 14%, transparent),
+    0 4px 10px -4px rgb(0 0 0 / 0.08);
+  border-color: color-mix(in srgb, var(--brand) 28%, var(--border-soft));
+}
+
+/* The one authored moment: the hero rises once on arrival. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-rise-1 {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+.animate-rise-2 {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-rise,
+  .animate-rise-1,
+  .animate-rise-2 {
+    animation: none;
+  }
+
+  .card-hover,
+  .card-hover:hover {
+    transition: none;
+    transform: none;
+  }
 }
